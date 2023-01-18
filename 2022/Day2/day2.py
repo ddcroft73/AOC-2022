@@ -21,12 +21,10 @@ def decode_strategy(text: str) -> tuple[str]:
     my_throw_num: str = None                      # This will be the key used in num_to_str to 
                                                   # select the throw as per the strategy guide
      
-    if (elven_strategy == 'X'):  
+    if (elven_strategy == 'X'): 
         my_throw_num = op_throw_num - 1
-
     if (elven_strategy == 'Y'):  
         my_throw_num = op_throw_num
-
     if (elven_strategy == 'Z'):  
         my_throw_num = op_throw_num + 1
 
@@ -66,13 +64,11 @@ def get_winner(op_throw: str, pl_throw: str) -> tuple[str]:
     ]
 
     match_result: str = pl_throw + ' ' + op_throw
-
     for profile in player_wins_profiles:
         if (op_throw == pl_throw):
             round = 3  
             winner = 'Draw'
             break
-
         if (profile == match_result):
             round = 6  
             winner = 'Player'
@@ -93,16 +89,15 @@ def part_one():
     winner: str = None
     
     with open(fpath, 'r') as file:
-            games: list[str] = file.readlines()
-
-            for line_cnt, match in enumerate(games):
-                opponent_throw, player_throw = decode_simple(match)
-                round_score, weapon_score, winner = get_winner(opponent_throw, player_throw)
-                total_score += (round_score + weapon_score)
-            #    print( f'\nMatch: {line_cnt} Part One\n------------------------------------------------------------')
-            #    print(f'Player: {player_throw.upper()} Opponent: {opponent_throw.upper()}')
-            #    print(f'Score this round: {round_score}, Weapon Score: {weapon_score} \nTotal: {total_score}')
-            #    print(f'Winner is: {winner[0]}')
+        games: list[str] = file.readlines()
+        for line_cnt, match in enumerate(games):
+            opponent_throw, player_throw = decode_simple(match)
+            round_score, weapon_score, winner = get_winner(opponent_throw, player_throw)
+            total_score += (round_score + weapon_score)
+        #    print( f'\nMatch: {line_cnt} Part One\n------------------------------------------------------------')
+        #    print(f'Player: {player_throw.upper()} Opponent: {opponent_throw.upper()}')
+        #    print(f'Score this round: {round_score}, Weapon Score: {weapon_score} \nTotal: {total_score}')
+        #    print(f'Winner is: {winner[0]}')
     print(f'Part One total score: {total_score}')
 
 def part_two():
@@ -114,7 +109,6 @@ def part_two():
     
     with open(fpath, 'r') as file:
         games: list[str] = file.readlines()
-
         for line_cnt, match in enumerate(games):
             opponent_throw, player_throw = decode_strategy(match)
             round_score, weapon_score, winner = get_winner(opponent_throw, player_throw)
