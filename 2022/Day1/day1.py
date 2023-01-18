@@ -1,4 +1,7 @@
 
+import os
+fpath: str = os.getcwd() + '/2022/Day1/input.txt'
+
 def generate_calorie_list(path: str) -> list[int]:
     elf_cache: list[int] = []
     food: int = 0
@@ -14,9 +17,7 @@ def generate_calorie_list(path: str) -> list[int]:
     return elf_cache
 
 
-def main() -> None:
-    fpath: str = "input.txt"
-
+def main() -> None:    
     calorie_list: list[int] = generate_calorie_list(fpath)
     largest_holder: int = max(calorie_list)
     total_top_three: int = sum(sorted(calorie_list)[-3:])
