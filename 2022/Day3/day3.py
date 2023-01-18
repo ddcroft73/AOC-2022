@@ -23,7 +23,7 @@ def reorganize_back_packs() -> int:
         Case sensitive.
         '''
         for char in str1:
-            if (char in str2):  # hehe python
+            if (char in str2):  
                 item_type: str = char
                 break
         return item_type
