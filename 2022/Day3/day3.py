@@ -1,19 +1,14 @@
 
-# open and read the file
-# split each rucksack in half
-# find te common upper or lowercase char 
-# convert the types into a priority, (ie. All lower case chars are assigned a numerical value 1 -26 respectively
-#                                     and all Upper are asssigned 27 - 52)
-#add up the priorites
+
 
 import os 
 fpath: str = os.getcwd() + '/2022/Day3/input.txt'
-
 
 def reorganize_back_packs() -> int:
     type_priority: int = 0
 
     def split_back_packs(bp: str) -> tuple[str]:
+        '''Name pretty much sez it....'''
         bp = bp.strip()
         both_pack_len: int = int(len(bp) / 2)
 
@@ -22,10 +17,9 @@ def reorganize_back_packs() -> int:
             bp[both_pack_len:]
         )
 
-
     def find_common_type(str1: str, str2: str) -> str:
         '''
-        Given two strings of equal length, find the common char between the 2.
+        Given two strings of equal length, find the common char between los dos!
         Case sensitive.
         '''
         for char in str1:
@@ -34,10 +28,9 @@ def reorganize_back_packs() -> int:
                 break
         return item_type
 
-
     def assign_priority(item: str) -> int:
         '''
-        Given the 'type', assign it a value to be used later in assessing value.
+        Given the 'type', assign it a value to be used later in asscessing... well,  value.
         '''
         lower_offset: int = 96
         upper_offset: int = 38
@@ -48,7 +41,6 @@ def reorganize_back_packs() -> int:
         if (item.islower()):
             priority = ord(item) - lower_offset
         return priority    
-
     
     with open(fpath, 'r') as f:
         back_packs: list[str] = f.readlines()
@@ -60,12 +52,11 @@ def reorganize_back_packs() -> int:
     return type_priority
 
 
-def main() -> None:
-    result: int = reorganize_back_packs()
-    print(result)
-    
 
-# zgzVNHHg and MwMLbLNB is:: N
+def main() -> None:
+    priority_sum: int = reorganize_back_packs()
+    print(f'The sum of the priorities of the back packs is: [ {priority_sum} ]')
+    
 
 
 if __name__ == "__main__":
