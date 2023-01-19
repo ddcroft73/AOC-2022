@@ -1,6 +1,3 @@
-
-
-
 import os 
 fpath: str = os.getcwd() + '/2022/Day3/input.txt'
 
@@ -10,11 +7,12 @@ def reorganize_back_packs() -> int:
     def split_back_packs(bp: str) -> tuple[str]:
         '''Name pretty much sez it....'''
         bp = bp.strip()
-        both_pack_len: int = int(len(bp) / 2)
+        both_pack_len: int = int(len(bp) / 2) # assumes they are all divisible by 2
 
         return (
-            bp[:both_pack_len],
-            bp[both_pack_len:]
+            bp[: both_pack_len],
+            bp[both_pack_len :]
+
         )
 
     def find_common_type(str1: str, str2: str) -> str:
@@ -53,6 +51,9 @@ def reorganize_back_packs() -> int:
 
 
 
+# There is no error checking in any of these routines. The assumption is all input is accurate
+# I basically just hone in on the instructions and consume the input with them in mind. Should 
+# there be error chceking even in this circumstance? 
 def main() -> None:
     priority_sum: int = reorganize_back_packs()
     print(f'The sum of the priorities of the back packs is: [ {priority_sum} ]')
