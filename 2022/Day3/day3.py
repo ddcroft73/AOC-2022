@@ -1,27 +1,18 @@
 import os 
+from typing import Any
+# No error checking whatsoever.... erks me not to do so.. but I don't guess it matters when the constraints are so precise.
+
 fpath: str = os.getcwd() + '/2022/Day3/input.txt'
 
 
-def find_common_itemType(*strings: tuple[str]) -> str:
+def find_common_itemType(*args: tuple[Any]) -> str:
     '''
-    Given two or three strings of equal or differing length,
-    find the common char between them!
-    Case sensitive.
-
-    Want to tighten this up make it so it doesnt matter how many strings are passed in.
-    Pretty basic.... expand on this
+     Uses set intersection to find any common items between multiple arrays\lists\iterables.
     '''
-    if (len(strings) == 2):
-        for char in strings[0]:
-            if (char in strings[1]):
-                item_type: str = char
-                break
-    elif (len(strings) == 3):
-        for char in strings[0]:
-            if ((char in strings[1]) and (char in strings[2])):
-                item_type: str = char
-                break
-    return item_type
+    set_list: list[Any] = [set(arg) for arg in args]
+    common_item_set: set[Any] = set_list[0].intersection(*set_list)    
+    return "".join(common_item_set)
+    
 
 def assign_priority(item: str) -> int:
     '''
@@ -43,9 +34,8 @@ def reorganize_back_packs() -> int:
     type_priority: int = 0
 
     def split_back_packs(bp: str) -> tuple[str]:
-        '''Name pretty much sez it....'''
         bp = bp.strip()
-        both_pack_len: int = int(len(bp) / 2) # assumes they are all divisible by 2
+        both_pack_len: int = int(len(bp) / 2) 
 
         return (
             bp[: both_pack_len],
@@ -53,7 +43,7 @@ def reorganize_back_packs() -> int:
         )    
 
     with open(fpath, 'r') as f:
-        back_packs: list[str] = f.readlines()[:1]
+        back_packs: list[str] = f.readlines()
 
         for back_pack in back_packs:
             pack1, pack2 = split_back_packs(back_pack)
@@ -71,14 +61,13 @@ def prioritize_group_badges():
         elf_population: list[str] = f.readlines()
         elf_population = [line.strip() for line in elf_population]
     
-    for elf_cnt, elf in enumerate(elf_population):        
+    for elf_cnt, elf in enumerate(elf_population):
         elf_group.append(elf)
+        
         # cull the elves into groups of three for processing, 
-        if (elf_cnt+1) % 3 == 0 and elf_cnt != 0: 
-            # get the badge type of the 3
+        if ((elf_cnt+1) % 3 == 0): 
             item_type: str = find_common_itemType(*elf_group)
             type_priority += assign_priority(item_type)
-            # next...
             elf_group = []
 
     return type_priority
@@ -88,17 +77,9 @@ def main() -> None:
     priority_sum_ruckSacks: int = reorganize_back_packs()
     priority_sum_badges: int = prioritize_group_badges()
 
-    print(
-        f'The sum of the priorities of the back packs is: [ {priority_sum_ruckSacks} ]')
-    print(
-        f'The sum of the priorities of Elves badges is: [ {priority_sum_badges} ]')
+    print(f'The sum of the priorities of the back packs is: [ {priority_sum_ruckSacks} ]')
+    print(f'The sum of the priorities of Elves badges is: [ {priority_sum_badges} ]')
 
 
 if __name__ == "__main__":
     main()
-
-
-"""
-        # count all the chars in the string.
-        for letter in (str_joined):
-            char[letter] = str_joined.count(letter)"""
