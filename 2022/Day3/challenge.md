@@ -66,8 +66,9 @@ example, the first group's rucksacks are the first three lines:
 vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
-And the second group's rucksacks are the next three lines:
 ```
+
+And the second group's rucksacks are the next three lines:
 
 ```
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
